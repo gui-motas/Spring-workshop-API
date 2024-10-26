@@ -14,5 +14,5 @@ public @Data @AllArgsConstructor @NoArgsConstructor class User implements Serial
     private String name;
     private String email;
     private String phone;
-    private String password;
+    private @ToString.Exclude String password;
 }
