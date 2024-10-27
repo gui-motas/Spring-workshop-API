@@ -24,5 +24,4 @@ public @Data @NoArgsConstructor @AllArgsConstructor @Builder class User implemen
     @OneToMany(mappedBy = "client")
     private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) List<Order> orders = new ArrayList<>();
 
-
 }
