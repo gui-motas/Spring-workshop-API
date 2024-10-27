@@ -5,13 +5,9 @@ import com.gui_motas.workshop_spring_jpa.entities.User;
 import com.gui_motas.workshop_spring_jpa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -20,8 +16,8 @@ public class UserResource {
     UserService userS;
 
     @GetMapping
-    public ResponseEntity<List<String>> findAll() {
-        List<String> list = userS.findAll().stream().map(x -> x.toString()).collect(Collectors.toList());
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = userS.findAll();
         return ResponseEntity.ok().body(list);
     }
 
@@ -30,4 +26,11 @@ public class UserResource {
         User obj = userS.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userS.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

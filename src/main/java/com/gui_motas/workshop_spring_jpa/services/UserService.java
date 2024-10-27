@@ -22,4 +22,8 @@ public class UserService {
         Optional<User> obj = userRepo.findById(id);
         return obj.get();
     }
+
+    public void delete(Long id) {
+        userRepo.deleteById(id);
+    }
 }
