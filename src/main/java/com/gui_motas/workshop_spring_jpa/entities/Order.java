@@ -1,5 +1,6 @@
 package com.gui_motas.workshop_spring_jpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,8 @@ public @Data @AllArgsConstructor @NoArgsConstructor class Order implements Seria
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
     @ManyToOne
     @JoinColumn(name = "client_id")
