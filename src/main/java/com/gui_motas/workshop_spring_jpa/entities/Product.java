@@ -19,6 +19,20 @@ public @Data @AllArgsConstructor @Builder @NoArgsConstructor class Product imple
     private @EqualsAndHashCode.Exclude Double price;
     private @EqualsAndHashCode.Exclude String imgUrl;
 
-    @Transient
-    private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) Set<Category> cetegories = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @Setter(AccessLevel.NONE) // Exclui do builder
+    private Set<Category> categories = new HashSet<>();
+
+    public static class ProductBuilder {
+        public Product build() {
+            if (this.categories == null) {
+                this.categories = new HashSet<>(); // Garante um Set vazio
+            }
+            return new Product(id, name, description, price, imgUrl, categories);
+        }
+    }
 }
+

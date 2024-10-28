@@ -21,6 +21,6 @@ public @Data @Builder @AllArgsConstructor @NoArgsConstructor class Category impl
 
 
     @JsonIgnore
-    @Transient
+    @ManyToMany(mappedBy = "categories")
     private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) Set<Product> products = new HashSet<>();
 }

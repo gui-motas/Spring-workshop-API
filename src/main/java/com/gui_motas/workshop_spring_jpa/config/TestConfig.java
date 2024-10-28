@@ -48,6 +48,12 @@ public class TestConfig implements CommandLineRunner {
         Product p4 = Product.builder().id(null).name("PC Gamer").description("Donec aliquet odio ac rhoncus cursus.").price(1200.0).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
         Product p5 = Product.builder().id(null).name("Rails for Dummies").description("Cras fringilla convallis sem vel faucibus.").price(100.99).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
 
+        p1.getCategories().add(cat2);
+        p2.getCategories().add(cat1);
+        p3.getCategories().add(cat3);
+        p3.getCategories().add(cat1);
+        p4.getCategories().add(cat3);
+        p5.getCategories().add(cat2);
 
         User user1 = User.builder().id(null).name("Gui").email("gui@gmail.com").phone("912313651").password("12345").build();
         User user2 = User.builder().id(null).name("Maria").email("maria@gmail.com").phone("912313651").password("1234").build();
