@@ -29,5 +29,11 @@ public class OrderResource {
         Order obj = OrderS.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-    
+
+    @GetMapping(value = "/delete/{id}")
+    public ResponseEntity<Order> deleteById(@PathVariable Long id) {
+        OrderS.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -6,21 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {
     @Autowired
-    OrderRepo OrderRepo;
+    OrderRepo orderRepo;
 
 
     public List<Order> findAll() {
-        return OrderRepo.findAll();
+        return orderRepo.findAll();
     }
 
     public Order findById(Long id) {
-        Optional<Order> obj = OrderRepo.findById(id);
-        return obj.get();
+
+        return orderRepo.findById(id).get();
+    }
+
+    public void delete(Long id) {
+        orderRepo.deleteById(id);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.gui_motas.workshop_spring_jpa.config;
 
+import com.gui_motas.workshop_spring_jpa.entities.Category;
 import com.gui_motas.workshop_spring_jpa.entities.Order;
 import com.gui_motas.workshop_spring_jpa.entities.User;
 import com.gui_motas.workshop_spring_jpa.entities.enums.OrderStatus;
+import com.gui_motas.workshop_spring_jpa.repositories.CategoryRepo;
 import com.gui_motas.workshop_spring_jpa.repositories.OrderRepo;
 import com.gui_motas.workshop_spring_jpa.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,16 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepo orderRepo;
 
+    @Autowired
+    private CategoryRepo categoryRepo;
+
     @Override
     public void run(String... args) throws Exception {
 
+
+        Category cat1 = Category.builder().id(null).name("Electronics").build();
+        Category cat2 = Category.builder().id(null).name("Books").build();
+        Category cat3 = Category.builder().id(null).name("Computers").build();
 
         User user1 = User.builder().id(null).name("Gui").email("gui@gmail.com").phone("912313651").password("12345").build();
         User user2 = User.builder().id(null).name("Maria").email("maria@gmail.com").phone("912313651").password("1234").build();
@@ -36,5 +45,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepo.saveAll(Arrays.asList(user1, user2));
         orderRepo.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 }
