@@ -7,25 +7,46 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 
-@Entity @Table(name = "tb_order")
-public @Data @AllArgsConstructor @NoArgsConstructor @Builder class Order implements Serializable {
+@Entity
+@Table(name = "tb_order")
+public @NoArgsConstructor class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Getter @Setter private  Long id;
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant moment;
+    @Getter @Setter private Instant moment;
 
-    private @Setter(AccessLevel.NONE)
-    @Getter(AccessLevel.NONE) Integer orderStatus;
+    private @Setter(AccessLevel.NONE) @Getter(AccessLevel.NONE) Integer orderStatus;
 
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> itens = new HashSet<>();
+
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+        super();
+        this.id = id;
+        this.moment = moment;
+        this.client = client;
+        setOrderStatus(orderStatus);
+    }
+
+    public Set<OrderItem> getItens() {
+        return itens;
+    }
 
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
@@ -36,15 +57,5 @@ public @Data @AllArgsConstructor @NoArgsConstructor @Builder class Order impleme
             this.orderStatus = orderStatus.getCode();
         }
     }
-
-    public static class OrderBuilder {
-        public OrderBuilder orderStatus(OrderStatus orderStatus) {
-            if (orderStatus != null) {
-                this.orderStatus = orderStatus.getCode();
-            }
-            return this;
-        }
-    }
-
 }
 

@@ -23,8 +23,7 @@ public @Data @AllArgsConstructor @Builder @NoArgsConstructor class Product imple
     @JoinTable(name = "tb_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    @Setter(AccessLevel.NONE) // Exclui do builder
-    private Set<Category> categories = new HashSet<>();
+    private @Setter(AccessLevel.NONE) Set<Category> categories = new HashSet<>();
 
     public static class ProductBuilder {
         public Product build() {
