@@ -29,7 +29,7 @@ public class UserResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userS.delete(id);
         return ResponseEntity.noContent().build();
@@ -38,7 +38,6 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User obj) {
         obj = userS.insert(obj);
-
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
