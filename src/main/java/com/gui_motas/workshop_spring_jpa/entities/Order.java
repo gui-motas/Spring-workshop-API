@@ -1,6 +1,7 @@
 package com.gui_motas.workshop_spring_jpa.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gui_motas.workshop_spring_jpa.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,9 +34,11 @@ public @NoArgsConstructor class Order implements Serializable {
     @Setter
     @ManyToOne
     @JoinColumn(name = "client_id")
+
     private User client;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
     private @Getter @Setter Payment payment;
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -54,6 +57,39 @@ public @NoArgsConstructor class Order implements Serializable {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
+    }
+
+    public Double getTotal(){
+        double sum = 0.0;
+        for(OrderItem x : items){
+            sum += x.getSubTotal();
+        }
+        return sum;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Order other = (Order) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
 }
 

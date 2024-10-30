@@ -18,9 +18,9 @@ public @AllArgsConstructor @NoArgsConstructor class Product implements Serializa
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private @Getter @Setter Long id;
     private @Getter @Setter String name;
-    private @Getter @Setter @EqualsAndHashCode.Exclude String description;
-    private @Getter @Setter @EqualsAndHashCode.Exclude Double price;
-    private @Getter @Setter @EqualsAndHashCode.Exclude String imgUrl;
+    private @Getter @Setter String description;
+    private @Getter @Setter Double price;
+    private @Getter @Setter String imgUrl;
 
     @ManyToMany
     @JoinTable(name = "tb_product_category",
@@ -49,6 +49,30 @@ public @AllArgsConstructor @NoArgsConstructor class Product implements Serializa
         return set;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
 
 }
 

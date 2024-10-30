@@ -18,8 +18,7 @@ public @Data @Builder @AllArgsConstructor @NoArgsConstructor class Category impl
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private @EqualsAndHashCode.Exclude String name;
-
-
+    
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) Set<Product> products = new HashSet<>();

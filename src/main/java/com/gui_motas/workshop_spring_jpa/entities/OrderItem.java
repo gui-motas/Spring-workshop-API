@@ -10,7 +10,7 @@ import lombok.*;
 import java.io.Serializable;
 @Entity
 @Table(name = "tb_order_item")
-public @EqualsAndHashCode @NoArgsConstructor class OrderItem implements Serializable {
+public @NoArgsConstructor class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
@@ -27,6 +27,10 @@ public @EqualsAndHashCode @NoArgsConstructor class OrderItem implements Serializ
         this.price = price;
     }
 
+    public Double getSubTotal(){
+        return price * quantity;
+    }
+
     @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
@@ -36,13 +40,37 @@ public @EqualsAndHashCode @NoArgsConstructor class OrderItem implements Serializ
         id.setOrder(order);
     }
 
-    
     public Product getProduct() {
         return id.getProduct();
     }
 
     public void setProduct(Product product) {
         id.setProduct(product);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrderItem other = (OrderItem) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
 
 
