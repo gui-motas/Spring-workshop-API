@@ -27,7 +27,7 @@ public @NoArgsConstructor class Order implements Serializable {
     private @Setter(AccessLevel.NONE) @Getter(AccessLevel.NONE) Integer orderStatus;
 
     @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> itens = new HashSet<>();
+    private @Getter Set<OrderItem> items = new HashSet<>();
 
     @Getter
     @Setter
@@ -42,10 +42,6 @@ public @NoArgsConstructor class Order implements Serializable {
         this.moment = moment;
         this.client = client;
         setOrderStatus(orderStatus);
-    }
-
-    public Set<OrderItem> getItens() {
-        return itens;
     }
 
     public OrderStatus getOrderStatus() {

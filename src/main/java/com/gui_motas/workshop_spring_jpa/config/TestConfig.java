@@ -41,11 +41,11 @@ public class TestConfig implements CommandLineRunner {
 
         categoryRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 
-        Product p1 = Product.builder().id(null).name("The Lord of the Rings").description("Lorem ipsum").price(90.5).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
-        Product p2 = Product.builder().id(null).name("Smart TV").description("Nulla eu imperdiet purus. Maecenas ante.").price(2190.0).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
-        Product p3 = Product.builder().id(null).name("Macbook Pro").description("Nam eleifend maximus tortor, at mollis.").price(1250.0).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
-        Product p4 = Product.builder().id(null).name("PC Gamer").description("Donec aliquet odio ac rhoncus cursus.").price(1200.0).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
-        Product p5 = Product.builder().id(null).name("Rails for Dummies").description("Cras fringilla convallis sem vel faucibus.").price(100.99).imgUrl("https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg").build();
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum", 90.5, "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "https://raw.githubusercontent.com/devsuperior/sds2/master/assets/donut.jpg");
 
         p1.getCategories().add(cat2);
         p2.getCategories().add(cat1);

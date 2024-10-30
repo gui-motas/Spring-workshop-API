@@ -1,5 +1,6 @@
 package com.gui_motas.workshop_spring_jpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,29 +10,45 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
-public @Data @AllArgsConstructor @Builder @NoArgsConstructor class Product implements Serializable {
+public @AllArgsConstructor @NoArgsConstructor class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
-    private String name;
-    private @EqualsAndHashCode.Exclude String description;
-    private @EqualsAndHashCode.Exclude Double price;
-    private @EqualsAndHashCode.Exclude String imgUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private @Getter @Setter Long id;
+    private @Getter @Setter String name;
+    private @Getter @Setter @EqualsAndHashCode.Exclude String description;
+    private @Getter @Setter @EqualsAndHashCode.Exclude Double price;
+    private @Getter @Setter @EqualsAndHashCode.Exclude String imgUrl;
 
     @ManyToMany
     @JoinTable(name = "tb_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private @Setter(AccessLevel.NONE) Set<Category> categories = new HashSet<>();
+    private @Getter @Setter(AccessLevel.NONE) Set<Category> categories = new HashSet<>();
 
-    public static class ProductBuilder {
-        public Product build() {
-            if (this.categories == null) {
-                this.categories = new HashSet<>(); // Garante um Set vazio
-            }
-            return new Product(id, name, description, price, imgUrl, categories);
-        }
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
+    }
+
+
 }
 

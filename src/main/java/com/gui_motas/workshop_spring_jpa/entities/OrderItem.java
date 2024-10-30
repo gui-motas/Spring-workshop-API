@@ -36,6 +36,7 @@ public @EqualsAndHashCode @NoArgsConstructor class OrderItem implements Serializ
         id.setOrder(order);
     }
 
+    
     public Product getProduct() {
         return id.getProduct();
     }
