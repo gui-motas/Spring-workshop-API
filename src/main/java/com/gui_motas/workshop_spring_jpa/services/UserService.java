@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
     UserRepo userRepo;
 
@@ -25,5 +26,9 @@ public class UserService {
 
     public void delete(Long id) {
         userRepo.deleteById(id);
+    }
+
+    public User insert(User obj) {
+        return userRepo.save(obj);
     }
 }

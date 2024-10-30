@@ -18,7 +18,7 @@ public @Data @NoArgsConstructor @AllArgsConstructor(access = AccessLevel.PRIVATE
     private @EqualsAndHashCode.Exclude String email;
     private @EqualsAndHashCode.Exclude String phone;
 
-    private @JsonIgnore @EqualsAndHashCode.Exclude String password;
+    private @EqualsAndHashCode.Exclude String password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
