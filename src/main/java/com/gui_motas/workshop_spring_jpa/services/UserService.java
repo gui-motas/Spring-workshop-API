@@ -2,6 +2,10 @@ package com.gui_motas.workshop_spring_jpa.services;
 
 import com.gui_motas.workshop_spring_jpa.entities.User;
 import com.gui_motas.workshop_spring_jpa.repositories.UserRepo;
+import com.gui_motas.workshop_spring_jpa.services.exceptions.ResourceNotFoundException;
+
+import jakarta.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +25,7 @@ public class UserService {
 
     public User findById(Long id) {
 
-        return userRepo.findById(id).get();
+        return userRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {

@@ -75,4 +75,3 @@ public @AllArgsConstructor @NoArgsConstructor class Product implements Serializa
     }
 
 }
-

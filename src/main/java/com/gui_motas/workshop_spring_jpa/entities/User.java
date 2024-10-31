@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Table(name = "tb_user")
-public @Data @NoArgsConstructor @AllArgsConstructor(access = AccessLevel.PRIVATE) @Builder class User implements Serializable {
+public @Getter @Setter @EqualsAndHashCode @NoArgsConstructor @AllArgsConstructor(access = AccessLevel.PRIVATE) @Builder class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
