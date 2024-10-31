@@ -7,6 +7,7 @@ import com.gui_motas.workshop_spring_jpa.services.exceptions.ResourceNotFoundExc
 
 import jakarta.annotation.Resource;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -50,9 +51,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        User entity = userRepo.getReferenceById(id);
-        updateData(entity, obj);
-        return userRepo.save(entity);
+        try {
+            User entity = userRepo.getReferenceById(id);
+            updateData(entity, obj);
+            return userRepo.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
