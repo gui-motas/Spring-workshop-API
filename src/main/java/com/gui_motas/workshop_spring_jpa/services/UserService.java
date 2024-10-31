@@ -2,11 +2,13 @@ package com.gui_motas.workshop_spring_jpa.services;
 
 import com.gui_motas.workshop_spring_jpa.entities.User;
 import com.gui_motas.workshop_spring_jpa.repositories.UserRepo;
+import com.gui_motas.workshop_spring_jpa.services.exceptions.DatabaseException;
 import com.gui_motas.workshop_spring_jpa.services.exceptions.ResourceNotFoundException;
 
 import jakarta.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,11 +27,22 @@ public class UserService {
 
     public User findById(Long id) {
 
-        return userRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
+        return userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {
-        userRepo.deleteById(id);
+        if (userRepo.existsById(id)) {
+            try{
+            userRepo.deleteById(id);
+            } catch (DataIntegrityViolationException e) {
+                throw new DatabaseException(e.getMessage());
+            }
+
+        } else {
+            throw new ResourceNotFoundException(id);
+
+        }
+
     }
 
     public User insert(User obj) {
