@@ -5,8 +5,6 @@ import com.gui_motas.workshop_spring_jpa.repositories.UserRepo;
 import com.gui_motas.workshop_spring_jpa.services.exceptions.DatabaseException;
 import com.gui_motas.workshop_spring_jpa.services.exceptions.ResourceNotFoundException;
 
-import jakarta.annotation.Resource;
-
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -33,8 +31,8 @@ public class UserService {
 
     public void delete(Long id) {
         if (userRepo.existsById(id)) {
-            try{
-            userRepo.deleteById(id);
+            try {
+                userRepo.deleteById(id);
             } catch (DataIntegrityViolationException e) {
                 throw new DatabaseException(e.getMessage());
             }
@@ -43,7 +41,6 @@ public class UserService {
             throw new ResourceNotFoundException(id);
 
         }
-
     }
 
     public User insert(User obj) {
