@@ -24,5 +24,4 @@ public class ProductService {
     public void delete(Long id) {
         productRepo.deleteById(id);
     }
-
 }

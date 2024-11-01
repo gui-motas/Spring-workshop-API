@@ -14,5 +14,4 @@ public @Getter @Setter @NoArgsConstructor @AllArgsConstructor class StandartErro
     private String error;
     private String message;
     private String path;
-
 }

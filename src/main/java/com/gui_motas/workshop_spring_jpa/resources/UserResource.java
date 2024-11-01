@@ -48,5 +48,4 @@ public class UserResource {
         obj = userS.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-
 }

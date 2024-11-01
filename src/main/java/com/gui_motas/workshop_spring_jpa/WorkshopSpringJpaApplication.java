@@ -9,7 +9,5 @@ public class WorkshopSpringJpaApplication {
     public static void main(String[] args) {
         SpringApplication.run(WorkshopSpringJpaApplication.class, args);
 
-
     }
-
 }

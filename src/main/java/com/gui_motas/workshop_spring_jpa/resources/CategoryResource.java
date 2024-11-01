@@ -27,10 +27,16 @@ public class CategoryResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         categoryS.delete(id);
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping
+    public ResponseEntity<Category> updateName(@PathVariable Long id, @RequestBody Category obj) {
+        obj = categoryS.updateName(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
 }
+
