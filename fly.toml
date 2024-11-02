@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for spring-workshop-jpa on 2024-11-01T20:04:58Z
+# fly.toml app configuration file generated for workshop-spring-jpa on 2024-11-01T20:37:09-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'spring-workshop-jpa'
+app = 'workshop-spring-jpa'
 primary_region = 'gig'
 
 [build]

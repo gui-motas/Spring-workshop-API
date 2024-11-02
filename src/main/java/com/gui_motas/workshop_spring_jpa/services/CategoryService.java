@@ -37,4 +37,9 @@ public class CategoryService {
             throw new ResourceNotFoundException(id);
         }
     }
+
+    public Category insert(Category obj){
+        return categoryRepo.save(obj);
+
+    }
 }
