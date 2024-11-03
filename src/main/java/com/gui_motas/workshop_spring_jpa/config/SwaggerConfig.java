@@ -18,7 +18,7 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().servers(List.of(new Server().url("https://workshop-spring-jpa.fly.dev")))
+        return new OpenAPI().servers(List.of(new Server().url("http://localhost:8090")))
                 .info(new Info()
                         .title("API REST - Spring Boot com JPA")
                         .version("1.0.0")
