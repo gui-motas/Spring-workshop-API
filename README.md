@@ -64,12 +64,27 @@ Abaixo está um resumo da arquitetura:
 - Ferramenta de teste de API como **Postman**
 - Docker para executar como contâiner
 
-## Git Clone 
+## Rode em sua máquina
 
-1. Clone o repositório:
+- **1. Clone o repositório:**
 
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
    OR
    git clone git@github.com:gui-motas/Spring-workshop-jpa.git
    ```
+- **2. Baixe o Docker, caso não tenha.**
+  [Download >](https://www.docker.com/products/docker-desktop/)
+
+- **3. Navegue até a pasta que clonou ou baixou o zip do repositório (em caso de zip, lembre-se de descompactar).**
+- Exemplo no Windows:
+- 3.1 `Atalho: Win + r`
+- 3.2 `Digite: cmd e aperte ENTER`
+- 3.3 `Digite: cd/Spring-workshop-API`
+- 
+- **4. Já com o cmd aberto, digite : `Digite: docker-compose up --build`**
+  
+- **5. Vá no seu navegador e digite `localhost:8090`**
+
+- **Pronto, é só testar**
+  
