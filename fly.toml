@@ -20,3 +20,8 @@ primary_region = 'gig'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[[services.ports]]
+  port = "80"
+  handlers = ["http"]
+  force_https = true
