@@ -80,7 +80,7 @@ Abaixo está um resumo da arquitetura:
 - Exemplo no Windows:
 - 3.1 `Atalho: Win + r`
 - 3.2 `Digite: cmd e aperte ENTER`
-- 3.3 `Digite: cd/Spring-workshop-API`
+- 3.3 `Digite: cd/Spring-workshop-API-main`
 - 
 - **4. Já com o cmd aberto, digite : `Digite: docker-compose up --build`**
   
