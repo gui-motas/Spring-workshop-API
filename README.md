@@ -81,7 +81,7 @@ Abaixo está um resumo da arquitetura:
 - 3.1 `Atalho: Win + r`
 - 3.2 `Digite: cmd e aperte ENTER`
 - 3.3 `Digite: cd/Spring-workshop-API-main`
-- 
+  
 - **4. Já com o cmd aberto, digite : `Digite: docker-compose up --build`**
   
 - **5. Vá no seu navegador e digite `localhost:8090`**
