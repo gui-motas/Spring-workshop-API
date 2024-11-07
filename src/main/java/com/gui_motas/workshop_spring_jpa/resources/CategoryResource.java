@@ -2,8 +2,6 @@ package com.gui_motas.workshop_spring_jpa.resources;
 
 
 import com.gui_motas.workshop_spring_jpa.entities.Category;
-import com.gui_motas.workshop_spring_jpa.entities.Product;
-import com.gui_motas.workshop_spring_jpa.entities.User;
 import com.gui_motas.workshop_spring_jpa.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
