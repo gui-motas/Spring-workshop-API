@@ -20,4 +20,9 @@ public @Data @Builder @AllArgsConstructor @NoArgsConstructor class Category impl
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) Set<Product> products = new HashSet<>();
+
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

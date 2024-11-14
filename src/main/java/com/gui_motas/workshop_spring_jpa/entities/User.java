@@ -24,4 +24,12 @@ public @Getter @Setter @EqualsAndHashCode @NoArgsConstructor @AllArgsConstructor
     @OneToMany(mappedBy = "client")
     private @EqualsAndHashCode.Exclude @Setter(AccessLevel.NONE) List<Order> orders = new ArrayList<>();
 
+    public User(Long id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
 }
