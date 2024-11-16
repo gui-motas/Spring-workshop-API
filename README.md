@@ -87,5 +87,4 @@ Abaixo está um resumo da arquitetura:
 - **5. Vá no seu navegador e digite `localhost:8090`**
 
 - **Pronto, é só testar**
-- .
   
