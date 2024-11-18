@@ -16,8 +16,8 @@ public @NoArgsConstructor class OrderItem implements Serializable {
     @EmbeddedId
     private OrderItemPK id = new OrderItemPK();
 
-    private @Getter @Setter Integer quantity;
-    private @Getter @Setter Double price;
+    private @Getter  Integer quantity;
+    private @Getter  Double price;
 
     public OrderItem(Order order, Product product, Integer quantity, Double price) {
         super();
@@ -27,9 +27,28 @@ public @NoArgsConstructor class OrderItem implements Serializable {
         this.price = price;
     }
 
-    public Double getSubTotal(){
+    public void setPrice(Double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+        this.price = price;
+    }
+
+    public void setQuantity(Integer quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
+        this.quantity = quantity;
+    }
+
+
+    public Double getSubTotal() {
+        if (price < 0 || quantity < 0) {
+            throw new IllegalArgumentException("Price and quantity cannot be negative");
+        }
         return price * quantity;
     }
+
 
     @JsonIgnore
     public Order getOrder() {
