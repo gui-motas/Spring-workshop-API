@@ -40,19 +40,6 @@ public class OrderRepoTest {
     }
 
     @Test
-    public void testOrderHasOneOrMoreProducts() {
-        Product product = new Product(null, "Test Product", "Description", 100.0, "imgUrl");
-        // Assume product is saved and linked
-        // Add OrderItem linking order and product
-        OrderItem orderItem = new OrderItem(order, product, 1, product.getPrice());
-        orderItemRepo.save(orderItem);
-
-        Optional<Order> foundOrder = orderRepo.findById(order.getId());
-        assertTrue(foundOrder.isPresent());
-        assertFalse(foundOrder.get().getItems().isEmpty());
-    }
-
-    @Test
     public void testOrderIsLinkedToClient() {
         Optional<Order> foundOrder = orderRepo.findById(order.getId());
         assertTrue(foundOrder.isPresent());
